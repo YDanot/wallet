@@ -7,11 +7,13 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 import static wallet.Currency.EUR;
+import static wallet.StockType.BITCOIN;
+import static wallet.StockType.US_DOLLAR;
 
 public class WalletTest {
 
-    private Stock btcStock = Stock.of(BigDecimal.ZERO, StockType.BITCOIN);
-    private Stock usdStock = Stock.of(BigDecimal.ZERO, StockType.US_DOLLAR);
+    private Stock btcStock = Stock.of(BigDecimal.ZERO, BITCOIN);
+    private Stock usdStock = Stock.of(BigDecimal.ZERO, US_DOLLAR);
 
     private Rate btcEurRate;
     private Rate usdEurRate;
@@ -36,12 +38,20 @@ public class WalletTest {
         computed_euro_value_should_be(9);
     }
 
-    private void and_USD_to_EUR_rate_is(double rate) {
-        usdEurRate = Rate.of(BigDecimal.valueOf(rate));
+    private void given_a_BTC_stock_of(int value) {
+        btcStock = Stock.of(BigDecimal.valueOf(value), BITCOIN);
+    }
+
+    private void and_BTC_to_EUR_rate_is(int value) {
+        btcEurRate = Rate.of(BigDecimal.valueOf(value), BITCOIN, EUR);
     }
 
     private void given_a_USD_stock_of(int value) {
-        usdStock = Stock.of(BigDecimal.valueOf(value), StockType.US_DOLLAR);
+        usdStock = Stock.of(BigDecimal.valueOf(value), US_DOLLAR);
+    }
+
+    private void and_USD_to_EUR_rate_is(double rate) {
+        usdEurRate = Rate.of(BigDecimal.valueOf(rate), US_DOLLAR, EUR);
     }
 
     private void when_I_compute_value_in_euro() {
@@ -50,14 +60,6 @@ public class WalletTest {
         else {
             finalValue = Money.of(btcEurRate.apply(btcStock.value()), EUR);
         }
-    }
-
-    private void given_a_BTC_stock_of(int value) {
-        btcStock = Stock.of(BigDecimal.valueOf(value), StockType.BITCOIN);
-    }
-
-    private void and_BTC_to_EUR_rate_is(int value) {
-        btcEurRate = Rate.of(BigDecimal.valueOf(value));
     }
 
     private void computed_euro_value_should_be(int value) {
