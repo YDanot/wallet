@@ -16,4 +16,8 @@ public class Rate {
     public BigDecimal value() {
         return value;
     }
+
+    public BigDecimal apply(BigDecimal value) {
+        return value().multiply(value);
+    }
 }

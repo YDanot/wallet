@@ -46,9 +46,9 @@ public class WalletTest {
 
     private void when_I_compute_value_in_euro() {
         if (usdStock.value().doubleValue() > 0)
-            finalValue = Money.of(usdStock.value().multiply(usdEurRate.value()), EUR);
+            finalValue = Money.of(usdEurRate.apply(usdStock.value()), EUR);
         else {
-            finalValue = Money.of(btcStock.value().multiply(btcEurValue.value()), EUR);
+            finalValue = Money.of(btcEurValue.apply(btcStock.value()), EUR);
         }
     }
 
