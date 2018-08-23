@@ -62,7 +62,7 @@ public class WalletTest {
     }
 
     private void when_I_compute_value_in_euro() {
-        finalValue = new WalletValue(changeRatesBuilder.build()).estimate(walletBuilder.build());
+        finalValue = new WalletValue(changeRatesBuilder.build()).estimate(walletBuilder.build(), EUR);
     }
 
     private void computed_euro_value_should_be(int value) {

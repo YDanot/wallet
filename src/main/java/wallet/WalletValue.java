@@ -2,8 +2,6 @@ package wallet;
 
 import java.math.BigDecimal;
 
-import static wallet.Currency.EUR;
-
 public class WalletValue {
 
     private final ChangeRates changeRates;
@@ -12,10 +10,10 @@ public class WalletValue {
         this.changeRates = changeRates;
     }
 
-    public Money estimate(Wallet wallet) {
-        Money money = Money.of(BigDecimal.ZERO, EUR);
+    public Money estimate(Wallet wallet, Currency currency) {
+        Money money = Money.of(BigDecimal.ZERO, currency);
         for (Stock stock : wallet.stockList()) {
-            money = money.add(Money.of(changeRates.find(stock.stockType(), EUR).apply(stock.value()), EUR));
+            money = money.add(Money.of(changeRates.find(stock.stockType(), currency).apply(stock.value()), currency));
         }
 
         return money;
