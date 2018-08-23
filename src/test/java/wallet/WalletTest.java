@@ -11,7 +11,7 @@ public class WalletTest {
     private Stock btcStock = new Stock(BigDecimal.ZERO,StockType.BITCOIN);
     private Stock usdStock = new Stock(BigDecimal.ZERO,StockType.US_DOLLAR);
 
-    private int btcEurValue;
+    private Rate btcEurValue;
     private Rate usdEurRate;
 
     private double finalValue;
@@ -46,7 +46,7 @@ public class WalletTest {
         if(usdStock.value().doubleValue() > 0)
             finalValue = usdStock.value().doubleValue() * usdEurRate.value().doubleValue();
         else {
-            finalValue = btcStock.value().doubleValue() * btcEurValue;
+            finalValue = btcStock.value().doubleValue() * btcEurValue.value().doubleValue();
         }
     }
 
@@ -55,7 +55,7 @@ public class WalletTest {
     }
 
     private void and_bitcoin_euro_value_is(int value) {
-        btcEurValue = value;
+        btcEurValue = new Rate(BigDecimal.valueOf(value));
     }
 
     private void computed_euro_value_should_be(int value) {
