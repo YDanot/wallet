@@ -10,8 +10,8 @@ import static wallet.Currency.EUR;
 
 public class WalletTest {
 
-    private Stock btcStock = new Stock(BigDecimal.ZERO, StockType.BITCOIN);
-    private Stock usdStock = new Stock(BigDecimal.ZERO, StockType.US_DOLLAR);
+    private Stock btcStock = Stock.of(BigDecimal.ZERO, StockType.BITCOIN);
+    private Stock usdStock = Stock.of(BigDecimal.ZERO, StockType.US_DOLLAR);
 
     private Rate btcEurValue;
     private Rate usdEurRate;
@@ -37,27 +37,27 @@ public class WalletTest {
     }
 
     private void and_USD_to_EUR_rate_is(double rate) {
-        usdEurRate = new Rate(BigDecimal.valueOf(rate));
+        usdEurRate = Rate.of(BigDecimal.valueOf(rate));
     }
 
     private void given_a_USD_stock_of(int value) {
-        usdStock = new Stock(BigDecimal.valueOf(value), StockType.US_DOLLAR);
+        usdStock = Stock.of(BigDecimal.valueOf(value), StockType.US_DOLLAR);
     }
 
     private void when_I_compute_value_in_euro() {
         if (usdStock.value().doubleValue() > 0)
-            finalValue = new Money(usdStock.value().multiply(usdEurRate.value()), EUR);
+            finalValue = Money.of(usdStock.value().multiply(usdEurRate.value()), EUR);
         else {
-            finalValue = new Money(btcStock.value().multiply(btcEurValue.value()), EUR);
+            finalValue = Money.of(btcStock.value().multiply(btcEurValue.value()), EUR);
         }
     }
 
     private void given_a_BTC_stock_of(int value) {
-        btcStock = new Stock(BigDecimal.valueOf(value), StockType.BITCOIN);
+        btcStock = Stock.of(BigDecimal.valueOf(value), StockType.BITCOIN);
     }
 
     private void and_BTC_to_EUR_rate_is(int value) {
-        btcEurValue = new Rate(BigDecimal.valueOf(value));
+        btcEurValue = Rate.of(BigDecimal.valueOf(value));
     }
 
     private void computed_euro_value_should_be(int value) {

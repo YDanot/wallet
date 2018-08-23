@@ -6,9 +6,13 @@ public class Money {
     private final BigDecimal value;
     private final Currency currency;
 
-    public Money(BigDecimal value, Currency currency) {
+    private Money(BigDecimal value, Currency currency) {
         this.value = value;
         this.currency = currency;
+    }
+
+    public static Money of(BigDecimal value, Currency currency) {
+        return new Money(value, currency);
     }
 
     public BigDecimal value() {
