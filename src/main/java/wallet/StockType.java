@@ -1,6 +1,6 @@
 package wallet;
 
 public enum StockType {
-    BITCOIN,US_DOLLAR,EURO;
+    BITCOIN,US_DOLLAR;
 
 }
