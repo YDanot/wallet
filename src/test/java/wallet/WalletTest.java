@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import static wallet.Currency.EUR;
+
 public class WalletTest {
 
     private Stock btcStock = new Stock(BigDecimal.ZERO,StockType.BITCOIN);
@@ -14,7 +16,7 @@ public class WalletTest {
     private Rate btcEurValue;
     private Rate usdEurRate;
 
-    private double finalValue;
+    private Money finalValue;
 
     @Test
     public void should_compute_value_in_EUR() throws IOException {
@@ -44,9 +46,9 @@ public class WalletTest {
 
     private void when_I_compute_value_in_euro() {
         if(usdStock.value().doubleValue() > 0)
-            finalValue = usdStock.value().doubleValue() * usdEurRate.value().doubleValue();
+            finalValue = new Money(usdStock.value().multiply(usdEurRate.value()), EUR);
         else {
-            finalValue = btcStock.value().doubleValue() * btcEurValue.value().doubleValue();
+            finalValue =new Money(btcStock.value().multiply(btcEurValue.value()), EUR);
         }
     }
 
@@ -59,7 +61,7 @@ public class WalletTest {
     }
 
     private void computed_euro_value_should_be(int value) {
-        Assertions.assertThat(finalValue).isEqualTo(value);
+        Assertions.assertThat(finalValue.value()).isEqualByComparingTo(BigDecimal.valueOf(value));
     }
 
 }
