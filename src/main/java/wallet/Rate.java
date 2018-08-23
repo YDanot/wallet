@@ -24,4 +24,12 @@ public class Rate {
     public BigDecimal apply(BigDecimal value) {
         return value().multiply(value);
     }
+
+    public StockType from() {
+        return from;
+    }
+
+    public Currency to() {
+        return to;
+    }
 }

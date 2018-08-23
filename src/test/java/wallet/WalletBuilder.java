@@ -16,6 +16,7 @@ public final class WalletBuilder {
     }
 
     public WalletBuilder withStock(Stock stock) {
+
         this.stockList.add(stock);
         return this;
     }
