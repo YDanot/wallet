@@ -25,11 +25,8 @@ public class ChangeRate {
         return value().multiply(value);
     }
 
-    public StockType from() {
-        return from;
-    }
 
-    public Currency to() {
-        return to;
+    public boolean sameConversion(StockType from, Currency to){
+        return this.from.equals(from) && this.to.equals(to);
     }
 }

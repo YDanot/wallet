@@ -1,5 +1,7 @@
 package wallet;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.math.BigDecimal;
 
 public class WalletValue {
@@ -11,11 +13,15 @@ public class WalletValue {
     }
 
     public Money estimate(Wallet wallet, Currency currency) {
-        Money money = Money.of(BigDecimal.ZERO, currency);
-        for (Stock stock : wallet.stockList()) {
-            money = money.add(Money.of(changeRates.find(stock.stockType(), currency).apply(stock.value()), currency));
-        }
+        return wallet.stockList().stream()
+                .map(stock -> estimate(stock, currency))
+                .reduce(Money::add)
+                .orElse(Money.of(BigDecimal.ZERO, currency));
+    }
 
-        return money;
+    @NotNull
+    private Money estimate(Stock stock, Currency currency) {
+        ChangeRate changeRate = changeRates.find(stock.stockType(), currency);
+        return Money.of(changeRate.apply(stock.value()), currency);
     }
 }

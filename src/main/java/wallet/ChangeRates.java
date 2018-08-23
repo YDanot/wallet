@@ -12,6 +12,7 @@ public class ChangeRates {
     }
 
     public ChangeRate find(StockType from, Currency to){
-        return changeRates.stream().filter(r -> r.from().equals(from) && r.to().equals(to)).findAny().orElseThrow(IllegalStateException::new);
+        return changeRates.stream().filter(r -> r.sameConversion(from,to)).findAny()
+                .orElseThrow(() -> new IllegalArgumentException("There is no rate existing to convert from: "+from+" to: "+to));
     }
 }
