@@ -4,14 +4,17 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class WalletTest {
 
-    private int btcStock;
-    private int btcEurValue;
-    private double finalValue;
+    private Stock btcStock;
     private int usdStock;
+
+    private int btcEurValue;
     private double usdEurRate;
+
+    private double finalValue;
 
     @Test
     public void should_compute_value_in_EUR() throws IOException {
@@ -43,12 +46,12 @@ public class WalletTest {
         if(usdStock > 0)
             finalValue = usdStock * usdEurRate;
         else {
-            finalValue = btcStock * btcEurValue;
+            finalValue = btcStock.value().doubleValue() * btcEurValue;
         }
     }
 
     private void given_a_BTC_stock_of(int value) {
-        btcStock = value;
+        btcStock = new Stock(BigDecimal.valueOf(value),StockType.BITCOIN);
     }
 
     private void and_bitcoin_euro_value_is(int value) {
