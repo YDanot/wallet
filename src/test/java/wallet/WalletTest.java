@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 
 public class WalletTest {
 
-    private Stock btcStock;
-    private int usdStock;
+    private Stock btcStock = new Stock(BigDecimal.ZERO,StockType.BITCOIN);
+    private Stock usdStock = new Stock(BigDecimal.ZERO,StockType.US_DOLLAR);
 
     private int btcEurValue;
     private double usdEurRate;
@@ -39,12 +39,12 @@ public class WalletTest {
     }
 
     private void given_a_USD_stock_of(int value) {
-        usdStock = value;
+        usdStock = new Stock(BigDecimal.valueOf(value),StockType.US_DOLLAR);
     }
 
     private void when_I_compute_value_in_euro() {
-        if(usdStock > 0)
-            finalValue = usdStock * usdEurRate;
+        if(usdStock.value().doubleValue() > 0)
+            finalValue = usdStock.value().doubleValue() * usdEurRate;
         else {
             finalValue = btcStock.value().doubleValue() * btcEurValue;
         }
