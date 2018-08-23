@@ -54,11 +54,11 @@ public class WalletTest {
     }
 
     private void and_BTC_to_EUR_rate_is(int value) {
-        changeRatesBuilder.addRate(Rate.of(BigDecimal.valueOf(value), BITCOIN, EUR));
+        changeRatesBuilder.addRate(ChangeRate.of(BigDecimal.valueOf(value), BITCOIN, EUR));
     }
 
     private void and_USD_to_EUR_rate_is(double rate) {
-        changeRatesBuilder.addRate(Rate.of(BigDecimal.valueOf(rate), US_DOLLAR, EUR));
+        changeRatesBuilder.addRate(ChangeRate.of(BigDecimal.valueOf(rate), US_DOLLAR, EUR));
     }
 
     private void when_I_compute_value_in_euro() {

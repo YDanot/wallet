@@ -2,19 +2,19 @@ package wallet;
 
 import java.math.BigDecimal;
 
-public class Rate {
+public class ChangeRate {
     private final BigDecimal value;
     private final StockType from;
     private final Currency to;
 
-    private Rate(BigDecimal value, StockType from, Currency to) {
+    private ChangeRate(BigDecimal value, StockType from, Currency to) {
         this.value = value;
         this.from = from;
         this.to = to;
     }
 
-    public static Rate of(BigDecimal value, StockType from, Currency to) {
-        return new Rate(value, from, to);
+    public static ChangeRate of(BigDecimal value, StockType from, Currency to) {
+        return new ChangeRate(value, from, to);
     }
 
     public BigDecimal value() {

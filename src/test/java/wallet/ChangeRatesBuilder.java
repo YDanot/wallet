@@ -5,23 +5,23 @@ import java.util.List;
 
 
 public final class ChangeRatesBuilder {
-    private List<Rate> rates;
+    private List<ChangeRate> changeRates;
 
     private ChangeRatesBuilder() {
-        rates = new ArrayList<>();
+        changeRates = new ArrayList<>();
     }
 
     public static ChangeRatesBuilder aChangeRates() {
         return new ChangeRatesBuilder();
     }
 
-    public ChangeRatesBuilder addRate(Rate rate) {
-        this.rates.add(rate);
+    public ChangeRatesBuilder addRate(ChangeRate changeRate) {
+        this.changeRates.add(changeRate);
         return this;
     }
 
     public ChangeRates build() {
-        ChangeRates changeRates = new ChangeRates(rates);
+        ChangeRates changeRates = new ChangeRates(this.changeRates);
         return changeRates;
     }
 }
