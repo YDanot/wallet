@@ -21,22 +21,22 @@ public class WalletTest {
     @Test
     public void should_compute_value_in_EUR() throws IOException {
         given_a_BTC_stock_of(2);
-        and_bitcoin_euro_value_is(5000);
+        and_BTC_to_EUR_rate_is(5000);
         when_I_compute_value_in_euro();
         computed_euro_value_should_be(10000);
 
         given_a_BTC_stock_of(2);
-        and_bitcoin_euro_value_is(2000);
+        and_BTC_to_EUR_rate_is(2000);
         when_I_compute_value_in_euro();
         computed_euro_value_should_be(4000);
 
         given_a_USD_stock_of(10);
-        and_USD_euro_value_is(0.90);
+        and_USD_to_EUR_rate_is(0.90);
         when_I_compute_value_in_euro();
         computed_euro_value_should_be(9);
     }
 
-    private void and_USD_euro_value_is(double rate) {
+    private void and_USD_to_EUR_rate_is(double rate) {
         usdEurRate = new Rate(BigDecimal.valueOf(rate));
     }
 
@@ -56,7 +56,7 @@ public class WalletTest {
         btcStock = new Stock(BigDecimal.valueOf(value), StockType.BITCOIN);
     }
 
-    private void and_bitcoin_euro_value_is(int value) {
+    private void and_BTC_to_EUR_rate_is(int value) {
         btcEurValue = new Rate(BigDecimal.valueOf(value));
     }
 
