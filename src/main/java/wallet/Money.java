@@ -22,4 +22,8 @@ public class Money {
     public Currency currency() {
         return currency;
     }
+
+    public Money add(Money money) {
+        return Money.of(value().add(money.value()), currency);
+    }
 }
