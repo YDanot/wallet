@@ -1,4 +1,4 @@
-package wallet.estimation.domain;
+package wallet.estimation.helper;
 
 import wallet.stock.domain.Stock;
 import wallet.stock.domain.StockType;

@@ -1,10 +1,11 @@
-package wallet.estimation.domain;
+package wallet.estimation.domain.doubles;
 
+import wallet.estimation.domain.Currency;
 import wallet.stock.domain.StockType;
 
 import java.math.BigDecimal;
 
-class ChangeRate {
+public class ChangeRate {
 
     private final BigDecimal value;
     private final StockType from;
@@ -16,7 +17,7 @@ class ChangeRate {
         this.to = to;
     }
 
-    static ChangeRate of(BigDecimal value, StockType from, Currency to) {
+    public static ChangeRate of(BigDecimal value, StockType from, Currency to) {
         return new ChangeRate(value, from, to);
     }
 

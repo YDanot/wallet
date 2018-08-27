@@ -5,7 +5,7 @@ import org.junit.Test;
 import wallet.estimation.domain.Currency;
 import wallet.estimation.domain.Estimation;
 import wallet.estimation.domain.Money;
-import wallet.estimation.domain.WalletBuilder;
+import wallet.estimation.helper.WalletBuilder;
 
 import java.io.IOException;
 
