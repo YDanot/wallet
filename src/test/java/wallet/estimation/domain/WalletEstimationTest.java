@@ -12,7 +12,6 @@ import static wallet.stock.domain.StockType.US_DOLLAR;
 
 public class WalletEstimationTest {
 
-    public static final BigDecimal TWO = BigDecimal.valueOf(2);
     private Money finalValue;
 
     private WalletBuilder walletBuilder = WalletBuilder.aWallet();
