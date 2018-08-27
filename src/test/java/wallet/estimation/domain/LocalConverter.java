@@ -1,27 +1,23 @@
-package wallet;
+package wallet.estimation.domain;
 
 
 import org.assertj.core.util.Lists;
-import wallet.estimation.ChangeRate;
-import wallet.estimation.Convertor;
-import wallet.estimation.Currency;
-import wallet.estimation.Money;
-import wallet.stock.Stock;
-import wallet.stock.StockType;
+import wallet.stock.domain.Stock;
+import wallet.stock.domain.StockType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalConvertor implements Convertor {
+public class LocalConverter implements Converter {
 
 
     private final List<ChangeRate> changeRates;
 
-    private LocalConvertor(List<ChangeRate> changeRates) {
+    private LocalConverter(List<ChangeRate> changeRates) {
         this.changeRates = changeRates;
     }
 
-    LocalConvertor() {
+    LocalConverter() {
         this.changeRates = new ArrayList<>();
     }
 
@@ -36,10 +32,10 @@ public class LocalConvertor implements Convertor {
                 .orElseThrow(() -> new IllegalArgumentException("There is no rate existing to convert from: "+from+" to: "+to));
     }
 
-    LocalConvertor addRate(ChangeRate changeRate) {
+    LocalConverter addRate(ChangeRate changeRate) {
         ArrayList<ChangeRate> changeRates = Lists.newArrayList(this.changeRates);
         changeRates.add(changeRate);
-        return new LocalConvertor(changeRates);
+        return new LocalConverter(changeRates);
     }
 
 }

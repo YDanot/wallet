@@ -1,30 +1,27 @@
-package wallet;
+package wallet.estimation.domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import wallet.estimation.ChangeRate;
-import wallet.estimation.Estimation;
-import wallet.estimation.Money;
-import wallet.stock.Stock;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import static wallet.estimation.Currency.EUR;
-import static wallet.stock.StockType.BITCOIN;
-import static wallet.stock.StockType.US_DOLLAR;
+import static wallet.estimation.domain.Currency.EURO;
+import static wallet.stock.domain.StockType.BITCOIN;
+import static wallet.stock.domain.StockType.US_DOLLAR;
 
-public class WalletTest {
+public class WalletEstimationTest {
 
+    public static final BigDecimal TWO = BigDecimal.valueOf(2);
     private Money finalValue;
 
     private WalletBuilder walletBuilder = WalletBuilder.aWallet();
-    private LocalConvertor localConvertor = new LocalConvertor();
+    private LocalConverter localConvertor = new LocalConverter();
 
     @Test
     public void should_convert_BTC_to_EUR() throws IOException {
         given_a_wallet()
-                .withStock(Stock.of(BigDecimal.valueOf(2), BITCOIN));
+                .withStockOf(2, BITCOIN);
         and_BTC_to_EUR_rate_is(5000);
         when_I_compute_value_in_euro();
         computed_euro_value_should_be(10000);
@@ -33,7 +30,7 @@ public class WalletTest {
     @Test
     public void should_convert_USD_to_EUR() {
         given_a_wallet()
-                .withStock(Stock.of(BigDecimal.valueOf(10), US_DOLLAR));
+                .withStockOf(10, US_DOLLAR);
         and_USD_to_EUR_rate_is(0.90);
         when_I_compute_value_in_euro();
         computed_euro_value_should_be(9);
@@ -42,13 +39,13 @@ public class WalletTest {
     @Test
     public void should_compute_total_value_of_a_wallet() throws IOException {
         given_a_wallet()
-                .withStock(Stock.of(BigDecimal.valueOf(2), BITCOIN))
-                .withStock(Stock.of(BigDecimal.valueOf(10), US_DOLLAR));
+                .withStockOf(2, BITCOIN)
+                .withStockOf(10, US_DOLLAR);
         and_BTC_to_EUR_rate_is(2000);
-        and_USD_to_EUR_rate_is(0.90);
+        and_USD_to_EUR_rate_is(0.80);
 
         when_I_compute_value_in_euro();
-        computed_euro_value_should_be(4000 + 9);
+        computed_euro_value_should_be(4000 + 8);
 
     }
 
@@ -58,15 +55,15 @@ public class WalletTest {
     }
 
     private void and_BTC_to_EUR_rate_is(int value) {
-        localConvertor = localConvertor.addRate(ChangeRate.of(BigDecimal.valueOf(value), BITCOIN, EUR));
+        localConvertor = localConvertor.addRate(ChangeRate.of(BigDecimal.valueOf(value), BITCOIN, EURO));
     }
 
     private void and_USD_to_EUR_rate_is(double rate) {
-        localConvertor = localConvertor.addRate(ChangeRate.of(BigDecimal.valueOf(rate), US_DOLLAR, EUR));
+        localConvertor = localConvertor.addRate(ChangeRate.of(BigDecimal.valueOf(rate), US_DOLLAR, EURO));
     }
 
     private void when_I_compute_value_in_euro() {
-        finalValue = new Estimation(walletBuilder.build(), localConvertor).in(EUR);
+        finalValue = new Estimation(walletBuilder.build(), localConvertor).in(EURO);
     }
 
     private void computed_euro_value_should_be(int value) {

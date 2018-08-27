@@ -1,6 +1,7 @@
-package wallet.estimation;
+package wallet.estimation.domain;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 public class Money {
     private final BigDecimal value;
@@ -19,7 +20,12 @@ public class Money {
         return value;
     }
 
-    public Money add(Money money) {
+    Money add(Money money) {
         return Money.of(value().add(money.value()), currency);
+    }
+
+    @Override
+    public String toString() {
+        return NumberFormat.getCurrencyInstance(currency.locale()).format(value.doubleValue());
     }
 }
