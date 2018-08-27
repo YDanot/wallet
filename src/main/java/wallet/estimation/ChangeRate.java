@@ -5,6 +5,7 @@ import wallet.stock.StockType;
 import java.math.BigDecimal;
 
 public class ChangeRate {
+
     private final BigDecimal value;
     private final StockType from;
     private final Currency to;

@@ -3,7 +3,7 @@ package wallet;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import wallet.estimation.ChangeRate;
-import wallet.estimation.WalletValue;
+import wallet.estimation.Estimation;
 import wallet.estimation.Money;
 import wallet.stock.Stock;
 
@@ -66,7 +66,7 @@ public class WalletTest {
     }
 
     private void when_I_compute_value_in_euro() {
-        finalValue = new WalletValue(localConvertor).estimate(walletBuilder.build(), EUR);
+        finalValue = new Estimation(walletBuilder.build(), localConvertor).in(EUR);
     }
 
     private void computed_euro_value_should_be(int value) {
