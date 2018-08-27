@@ -1,4 +1,4 @@
-package wallet;
+package wallet.stock;
 
 
 import java.math.BigDecimal;

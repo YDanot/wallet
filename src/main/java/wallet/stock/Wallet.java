@@ -1,4 +1,4 @@
-package wallet;
+package wallet.stock;
 
 import org.assertj.core.util.Lists;
 

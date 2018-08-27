@@ -1,5 +1,8 @@
 package wallet;
 
+import wallet.stock.Stock;
+import wallet.stock.Wallet;
+
 import java.util.ArrayList;
 import java.util.List;
 

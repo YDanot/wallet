@@ -1,4 +1,4 @@
-package wallet;
+package wallet.estimation;
 
 import java.math.BigDecimal;
 

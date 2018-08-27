@@ -1,4 +1,6 @@
-package wallet;
+package wallet.estimation;
+
+import wallet.stock.StockType;
 
 import java.math.BigDecimal;
 
