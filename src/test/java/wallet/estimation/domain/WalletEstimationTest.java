@@ -49,7 +49,6 @@ public class WalletEstimationTest {
     }
 
     private WalletBuilder given_a_wallet() {
-        walletBuilder = WalletBuilder.aWallet();
         return walletBuilder;
     }
 
