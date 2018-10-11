@@ -16,10 +16,7 @@ public class Estimation {
     }
 
     public Money in(Currency currency) {
-        return this.wallet.stockList().stream()
-                .map(stock -> converter.convert(stock, currency))
-                .reduce(Money::add)
-                .orElse(Money.of(BigDecimal.ZERO, currency));
+        return this.wallet.evaluate(stock -> converter.convert(stock, currency));
     }
 
 }

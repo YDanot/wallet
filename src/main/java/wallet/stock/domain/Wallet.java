@@ -1,8 +1,9 @@
 package wallet.stock.domain;
 
-import org.assertj.core.util.Lists;
+import wallet.estimation.domain.Money;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class Wallet {
 
@@ -12,7 +13,9 @@ public class Wallet {
         this.stockList = stockList;
     }
 
-    public List<Stock> stockList() {
-        return Lists.newArrayList(stockList);
+    public Money evaluate(Function<Stock, Money> conversionFunction) {
+        return stockList.stream()
+                .map(conversionFunction)
+                .reduce(Money::add).orElseThrow(IllegalArgumentException::new);
     }
 }

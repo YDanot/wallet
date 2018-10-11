@@ -20,7 +20,7 @@ public class Money {
         return value;
     }
 
-    Money add(Money money) {
+    public Money add(Money money) {
         return Money.of(value().add(money.value()), currency);
     }
 
