@@ -2,8 +2,6 @@ package wallet.estimation.domain;
 
 import wallet.stock.domain.Wallet;
 
-import java.math.BigDecimal;
-
 public class Estimation {
 
     private final Converter converter;

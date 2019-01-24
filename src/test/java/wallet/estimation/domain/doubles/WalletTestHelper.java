@@ -3,8 +3,7 @@ package wallet.estimation.domain.doubles;
 import org.assertj.core.api.Assertions;
 import wallet.estimation.domain.Estimation;
 import wallet.estimation.domain.Money;
-import wallet.estimation.domain.doubles.ChangeRate;
-import wallet.estimation.domain.doubles.LocalConverter;
+import wallet.estimation.domain.ChangeRate;
 import wallet.estimation.helper.WalletBuilder;
 
 import java.math.BigDecimal;

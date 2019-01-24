@@ -2,6 +2,7 @@ package wallet.estimation.domain.doubles;
 
 
 import org.assertj.core.util.Lists;
+import wallet.estimation.domain.ChangeRate;
 import wallet.estimation.domain.Converter;
 import wallet.estimation.domain.Currency;
 import wallet.estimation.domain.Money;
@@ -27,7 +28,7 @@ public class LocalConverter implements Converter {
     @Override
     public Money convert(Stock stock, Currency currency) {
         ChangeRate changeRate = find(stock.stockType(), currency);
-        return Money.of(changeRate.apply(stock.value()), currency);
+        return changeRate.apply(stock.value());
     }
 
     private ChangeRate find(StockType from, Currency to){
