@@ -14,7 +14,6 @@ import java.util.List;
 
 public class LocalConverter implements Converter {
 
-
     private final List<ChangeRate> changeRates;
 
     private LocalConverter(List<ChangeRate> changeRates) {

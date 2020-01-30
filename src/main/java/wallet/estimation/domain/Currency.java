@@ -4,7 +4,6 @@ import java.util.Locale;
 
 public enum Currency {
     EURO("EUR", Locale.FRANCE),
-    US_DOLLAR("USD", Locale.US),
     POUND_STERLING("GBP", Locale.UK);
 
     private final String iso4217;

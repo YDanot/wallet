@@ -12,7 +12,7 @@ public class Money {
         this.currency = currency;
     }
 
-    public static Money of(BigDecimal value, Currency currency) {
+    static Money of(BigDecimal value, Currency currency) {
         return new Money(value, currency);
     }
 
